@@ -16,10 +16,11 @@ mongoose.connect(MONGO_URL, {
    useNewUrlParser: true,
    useUnifiedTopology: true,
    useFindAndModify: false})
-
+app.use(express.static('public'))
+app.use(express.static('uploads'))
   
 app.use('/api', routes)
-app.use(express.static('public'))
+
 app.get('/', function(req, res){
    res.send("Hello world!");
 });
