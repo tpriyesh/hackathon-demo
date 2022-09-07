@@ -61,7 +61,7 @@ router.get('/list', async (req, res) =>{
         const list = await restaurantStoryModel.getAllStories();
 
         const items = rest.map(item => {
-            const stories = list.filter(i => i.rId !== item._id);
+            const stories = list.filter(i => i.rId === item._id);
             return {
                 ...item,
                 storyList: stories
