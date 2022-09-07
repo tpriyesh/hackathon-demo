@@ -4,7 +4,7 @@ const multer = require("multer");
 
 var storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, path.join(`${__dirname}/uploads`));
+    callback(null, "./uploads");
   },
   filename: (req, file, callback) => {
     // const match = ["image/png", "image/jpeg"];
@@ -15,6 +15,7 @@ var storage = multer.diskStorage({
     // }
 
     //var filename = `${Date.now()}-bezkoder-${file.originalname}`;
+    console.log("file ori ", file.originalname);
     callback(null, file.originalname);
   }
 });
