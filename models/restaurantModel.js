@@ -9,7 +9,8 @@ var restaurantSchema = new Schema({
     lat: { type: String },
     long: { type: String  },
     createdAt: { type: String } ,
-    rating: {type: String}
+    rating: {type: String},
+    meals: { type : Array , "default" : [] }
 })
 
 const restaurantModel = mongoose.model('restaurant', restaurantSchema);
@@ -23,6 +24,17 @@ module.exports.createRestaurant = async(data)=> {
  catch(e){
     console.log(e);
      return null;
+ }
+}
+
+module.exports.list = async()=> {
+    try{
+        const list = await restaurantModel.find({}).lean().exec();
+        return list;
+    }
+ catch(e){
+    console.log(e);
+     return [];
  }
 }
 

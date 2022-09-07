@@ -22,6 +22,18 @@ module.exports.getAllStoriesForARestaurant = async(rId)=> {
  }
 }
 
+module.exports.getAllStories = async()=> {
+    try{
+       const list = await restaurantStoryModel.find({}).lean().exec();
+       console.log('list', list);
+       return list;
+    }
+ catch(e){
+    console.log(e);
+     return [];
+ }
+}
+
 module.exports.createRestaurantStory = async(data)=> {
     try{
         let res = new restaurantStoryModel(data)

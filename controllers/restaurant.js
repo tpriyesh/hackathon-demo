@@ -13,6 +13,7 @@ router.post('/create', async (req, res) =>{
         data.lat =req.body.lat;
         data.long = req.body.long;
         data.createdDate = new Date().getTime()
+        data.meals = req.body.meals;
 
         const rest = await restaurantModel.createRestaurant(data);
 
@@ -44,6 +45,31 @@ router.get('/info', async (req, res) =>{
         const detail = {...rest, storyList};
         console.log('rest', rest);
         return res.json({ data: detail, error: null})
+})
+
+router.get('/list', async (req, res) =>{
+      
+    //console.log("req", req);
+
+        const rest = await restaurantModel.list();
+
+        if (!rest) {
+            res.json({ error: 'Restaurant Not exist', data: null })
+            return;
+        }
+
+        const list = await restaurantStoryModel.getAllStories();
+
+        const items = rest.map(item => {
+            const stories = list.filter(i => i.rId !== item._id);
+            return {
+                ...item,
+                storyList: stories
+            }
+        })
+
+        
+        return res.json({ data: items, error: null})
 })
 
 
