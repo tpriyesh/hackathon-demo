@@ -4,8 +4,8 @@ var app = express();
 const cors = require('cors');
 var routes = require('./routes')
 var mongoose = require('mongoose');
-var MONGO_URL = "mongodb://localhost:27017/hackathon";
-
+//var MONGO_URL = "mongodb://localhost:27017/hackathon";
+var MONGO_URL = "mongodb+srv://test:swiggydemo@cluster0.1wliu.mongodb.net/hackathon?retryWrites=true&w=majority";
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.options('*', cors());
