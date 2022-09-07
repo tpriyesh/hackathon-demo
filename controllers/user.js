@@ -53,7 +53,7 @@ router.get('/listallusers', async (req, res) =>{
         res.json(result)
 })
 
-router.get('/validuser', async (req, res) =>{
+router.post('/validuser', async (req, res) =>{
     const { email, password }  = req.body;
     var result = await usermodel.checkEmailPassword(email,  password)
         if(!result){
