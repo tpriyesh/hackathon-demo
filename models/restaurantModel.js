@@ -10,6 +10,7 @@ var restaurantSchema = new Schema({
     long: { type: String  },
     createdAt: { type: String } ,
     rating: {type: String},
+    thumbnail: {type: String},
     meals: { type : Array , "default" : [] }
 })
 
