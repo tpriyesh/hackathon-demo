@@ -14,8 +14,8 @@ var storage = multer.diskStorage({
     //   return callback(message, null);
     // }
 
-    var filename = `${Date.now()}-bezkoder-${file.originalname}`;
-    callback(null, filename);
+    //var filename = `${Date.now()}-bezkoder-${file.originalname}`;
+    callback(null, file.originalname);
   }
 });
 

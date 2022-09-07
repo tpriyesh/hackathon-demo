@@ -1,5 +1,6 @@
 var express = require('express')
 var router = express.Router()
+var restaurantStoryModel = require('../models/restaurantStoryModel');
 
 const upload = require("../upload");
 
@@ -16,7 +17,12 @@ router.post('/', async (req, res) =>{
 
     try {
         await upload(req, res);
-        console.log(req.files);
+        console.log("body",  req.body, req.files);
+
+        await restaurantStoryModel.createRestaurantStory({
+            rId: req.body.rId,
+            image: req.file.filename
+        })
     
         // if (req.files.length <= 0) {
         //   return res.send(`You must select at least 1 file.`);

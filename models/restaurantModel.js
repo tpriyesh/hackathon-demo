@@ -15,10 +15,23 @@ var restaurantSchema = new Schema({
 const restaurantModel = mongoose.model('restaurant', restaurantSchema);
 // const usermoreModel = mongoose.model('usermore', usermoreSchema);
 
-module.exports.getRestaurants = async(data)=> {
+module.exports.createRestaurant = async(data)=> {
     try{
-        let usr = new userModel(data)
-        return await usr.save()
+        let res = new restaurantModel(data)
+        return await res.save()
+    }
+ catch(e){
+    console.log(e);
+     return null;
+ }
+}
+
+module.exports.getRestaurantDetail = async(userId) => {
+
+    try{
+        var data = await restaurantModel.findOne({user: userId }).lean().exec();
+        console.log('data', data, userId);
+        return data
     }
  catch(e){
     console.log(e);
