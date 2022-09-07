@@ -60,11 +60,20 @@ router.get('/list', async (req, res) =>{
 
         const list = await restaurantStoryModel.getAllStories();
 
+        console.log("list" , list);
+
         const items = rest.map(item => {
-            const stories = list.filter(i => i.rId === item._id);
+            const s =[];
+            list.forEach(k => {
+                console.log("k is", k.rId, item._id);
+                if (k.rId.toString() === item._id.toString()) {
+                    console.log("ush called")
+                    s.push(k);
+                }
+            })
             return {
                 ...item,
-                storyList: stories
+                storyList: s
             }
         })
 
